@@ -1,0 +1,29 @@
+{
+  "name": "hordes",
+  "version": "0.4.0",
+  "description": "hordes",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hordes/hordes.git"
+  },
+  "keywords": [
+    "Electron",
+    "hordes"
+  ],
+  "author": "nervous relatives",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/hordes/hordes/issues"
+  },
+  "homepage": "https://github.com/hordes/hordes#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^1.4.13"
+  },
+  "dependencies": {
+    "user-home": "^2.0.0"
+  }
+}

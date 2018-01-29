@@ -1,0 +1,155 @@
+/* themes */
+.dark{
+  background: #191919;
+  color: #777;
+}
+.red{
+  background: #000;
+  color: #f00;
+}
+.yellow{
+  background: #191919;
+  color: #ff0;
+}
+.orange{
+  background: #191919;
+  color: #f60;
+}
+.green{
+  background: #191919;
+  color: #0f0;
+}
+.blue{
+  background: #191919;
+  color: #00c;
+}
+.light{
+  background: #777;
+  color: #191919;
+}
+
+.dark .story-item{
+  border-bottom: 1px dotted rgba(100, 100, 100, 0.35);
+  background: rgba(255, 255, 255, 0.0);
+  transition:all 0.3s;
+  padding: 5px;
+  /*padding-left: 5px;
+  padding-right: 10px;
+  word-break:keep-all;*/
+}
+.dark .story-item:hover{
+  cursor: pointer;
+  /*margin-left: 20px;*/
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.red .story-item{
+  border-bottom: 1px dotted rgba(100, 100, 100, 0.35);
+  background: rgba(255, 0, 0, 0.0);
+  transition:all 0.3s;
+  padding: 5px;
+  /*padding-left: 5px;
+  padding-right: 10px;
+  word-break:keep-all;*/
+}
+.red .story-item:hover{
+  cursor: pointer;
+  /*margin-left: 20px;*/
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #000;
+  background: rgba(255, 0, 0, 1);
+}
+
+.yellow .story-item{
+  border-bottom: 1px dotted rgba(100, 100, 100, 0.35);
+  background: rgba(255, 255, 0, 0.0);
+  transition:all 0.3s;
+  padding: 5px;
+  /*padding-left: 5px;
+  padding-right: 10px;
+  word-break:keep-all;*/
+}
+.yellow .story-item:hover{
+  cursor: pointer;
+  /*margin-left: 20px;*/
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #000;
+  background: rgba(255, 255, 0, 1);
+}
+
+.orange .story-item{
+  border-bottom: 1px dotted rgba(100, 100, 100, 0.35);
+  background: rgba(255, 120, 0, 0.0);
+  transition:all 0.3s;
+  padding: 5px;
+  /*padding-left: 5px;
+  padding-right: 10px;
+  word-break:keep-all;*/
+}
+.orange .story-item:hover{
+  cursor: pointer;
+  /*margin-left: 20px;*/
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #000;
+  background: rgba(255, 120, 0, 1);
+}
+
+.green .story-item{
+  border-bottom: 1px dotted rgba(100, 100, 100, 0.35);
+  background: rgba(0, 255, 0, 0.0);
+  transition:all 0.3s;
+  padding: 5px;
+  /*padding-left: 5px;
+  padding-right: 10px;
+  word-break:keep-all;*/
+}
+.green .story-item:hover{
+  cursor: pointer;
+  /*margin-left: 20px;*/
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #000;
+  background: rgba(0, 255, 0, 1);
+}
+
+.blue .story-item{
+  border-bottom: 1px dotted rgba(100, 100, 100, 0.35);
+  background: rgba(0,0,255, 0.0);
+  transition:all 0.3s;
+  padding: 5px;
+  /*padding-left: 5px;
+  padding-right: 10px;
+  word-break:keep-all;*/
+}
+.blue .story-item:hover{
+  cursor: pointer;
+  /*margin-left: 20px;*/
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #000;
+  background: rgba(0,0,255, 1);
+}
+
+.light .story-item{
+  border-bottom: 1px dotted rgba(100, 100, 100, 0.35);
+  background: rgba(200, 200, 200, 0.0);
+  transition:all 0.3s;
+  padding: 5px;
+  /*padding-left: 5px;
+  padding-right: 10px;
+  word-break:keep-all;*/
+}
+.light .story-item:hover{
+  cursor: pointer;
+  /*margin-left: 20px;*/
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #000;
+  background: rgba(200, 200, 200, 1);
+}

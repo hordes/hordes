@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>hordes</title>
+    <link rel="stylesheet" href="./bootstrap-3.3.6-dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <link rel="stylesheet" href="./L.GeoSearch-develop/src/css/l.geosearch.css" />
+    <link rel="stylesheet" type="text/css" href="./leaflet-openweathermap-master/leaflet-openweathermap.css">
+    <link href="./css/flag-icon-css-master/assets/docs.css" rel="stylesheet">
+    <link href="./css/flag-icon-css-master/css/flag-icon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/base.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="./css/hordes.themes.css" media="screen" title="no title">
+
+
+    <script type="text/javascript" src="./js/moment.min.js"></script>
+    <script type="text/javascript" src="./js/mousetrap.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="./bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/knockout-3.4.0.js"></script>
+    <script type="text/javascript" src="./js/knockout-sortable.js"></script>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <script src="./L.GeoSearch-develop/src/js/l.control.geosearch.js" charset="utf-8"></script>
+    <script src="./L.GeoSearch-develop/src/js/l.geosearch.provider.openstreetmap.js" charset="utf-8"></script>
+    <script src="./leaflet-openweathermap-master/leaflet-openweathermap.js" type="text/javascript"></script>
+    <!-- <script src='https://unpkg.com/leaflet-arc/bin/leaflet-arc.min.js'></script> -->
+    <script src="./Leaflet.Arc-master/bin/leaflet-arc.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+
+    <div class="drag-region"></div>
+    <div class="hordes-icon">
+      <!-- <img src="./assets/hordes_icon.png" width="100%" alt="" /> -->
+      <!-- <img src="https://hordes.info/sources/icons/hordes_.jpg" width="100%" alt="" /> -->
+    </div>
+
+    <div class="app">
+      <div class="app-inner">
+
+        <div id="hordesConsole">
+          <div id="hordesConsole_inner">
+            <div id="hordesConsoleHeader">
+              <button id="hideConsoleBtn">[x]</button>
+              <button id="hordeBtn">[H]</button>
+              <button id="saveHordeBtn">[S]</button>
+              <button id="printHordeBtn">[P]</button>
+              <button id="weatherBtn">[W]</button>
+              <div id="hordeBar">
+                <div id="hordeBarInner"></div>
+              </div>
+              <span id="horded"></span>
+            </div>
+            <div class="horde-detail">
+              <div class="inner">
+                <div class="close">X</div>
+                <div class="header"></div>
+                <div class="description"></div>
+              </div>
+            </div>
+            <div id="hordesConsoleBody"></div>
+          </div>
+        </div>
+
+        <div id="timeline">
+          <div id="timeline_inner" data-bind="foreach:timelineEvents">
+            <div class="timeline-cell">
+              <span data-bind="text:timelineLabel"></span> | <span data-bind="text:timelineDate"></span>
+            </div>
+          </div>
+        </div>
+
+        <div id="splash">
+          <div id="splash_inner">
+            <div id="splash_cell">
+              [HORDES]
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- main -->
+        <div class="main clearfix">
+          <div class="col-xs-12 col-md-9 main-viewport">
+
+            <!-- <div id="hordesConsole">
+              <div id="hordesConsoleHeader">
+                <button id="hordeBtn">[H]</button>
+              </div>
+              <div id="hordesConsoleBody"></div>
+            </div> -->
+            <div id="storyDetail">
+              <div id="story-detail__inner">
+                <div id="story-detail__cell">
+                  <div class="detail-item">
+                    <div id="closeStoryDetailBtn">
+                      <span class="glyphicon glyphicon-remove text-red pointer"></span>
+                    </div>
+                    <h5>
+                      <span data-bind="text: current_agency" class="text-red weight-heavy"></span><br/>
+                      <span data-bind="text: current_headline" class="weight-medium"></span>
+                    </h5>
+                    <!-- <img class="detail-item__image" data-bind="attr:{src:current_image}"/><br/> -->
+                    <div id="storyItemMeta">
+                      author: <span data-bind="text:current_author"></span> |
+                      published: <span data-bind="text:current_pubdate"></span> |
+                    </div>
+                    <div id="storyItemImage">
+                      <img data-bind="attr:{src:current_image}"/>
+                    </div>
+                    media: <span data-bind="text:current_media"></span>
+                    <div class="scroll-y weight-medium storyItemDescriptionContainer">
+                      <div id="storyItemDescription" data-bind="html: current_description"></div>
+                      <div id="storyItemSummary" data-bind="html: current_summary"></div>
+                    </div>
+                    <p>
+                      <!-- <a data-bind="text:current_url,attr{href:current_url}" target="_blank"><i>read more...</i></a> -->
+                      <a data-bind="click:function(){openStory()}" class="pointer"><i>open</i></a>
+                      <a data-bind="click:function(){getPageText()}" class="pointer"><i>grab</i></a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="hordesAudioContainer" class="clearfix">
+                <audio id="hordesAudio" controls></audio>
+                <span class="glyphicon glyphicon-remove inline-block" onclick="closeAudio()"></span>
+            </div>
+            <div id="mapFrame" class=""></div>
+
+          </div>
+
+
+
+
+
+          <div class="col-xs-12 col-md-3 side-viewport fill-height pad-none">
+            <div class="side-panel__header_bs">
+              <img data-bind="attr:{src:current_icon}" height="50" style="border-radius:3px;" align="right" alt="" />
+              <h3 class="text-left" data-bind="text: current_agency"></h3>
+            </div>
+            <div class="side-panel__header--info_foot_bs">
+
+              <div id="rateBtn" class="rating_icon pointer">
+                <span class="rating_value" data-bind="text:current_rating"></span>
+                <span class="glyphicon glyphicon-star"></span>
+              </div>
+
+              <span class="audio-btn glyphicon glyphicon-volume-up pointer" data-bind="attr:{title: agency_air_date},click:$root.playAudio"></span>
+              <span class="glyphicon glyphicon-globe pointer" data-bind="attr:{title: current_website},click:$root.openWebsite"></span>
+              <span class="notebook-btn glyphicon glyphicon-book pointer"></span>
+              <span class="refresh-btn glyphicon glyphicon-refresh pointer"></span>
+              <img src="./rss.svg"  data-bind="click: $root.rssLink" height="20" style="opacity:0.5;" class="pointer"/>
+            </div>
+            <div class="side-panel__loading">loading...</div>
+            <div class="clearfix">
+
+
+              <div id="sidePanelBody" class="scroll-y border-top__dark">
+
+                <div id="notebook">
+                  <div id="notebookControls">
+                    <span class="glyphicon glyphicon-save"></span>
+                  </div>
+                  <textarea id="notebookTextarea"></textarea>
+                </div>
+
+                <ul class="stories" data-bind="foreach: current_stories">
+                  <li class="story-item" data-bind="click:$root.storyItemClick">
+                    <div class="story-item__inner pad-none">
+                      <div class="story-item__cell">
+                      <span class="story-item__btn micro" data-bind="text: title"></span>
+                    </div>
+                    </div>
+                  </li>
+                </ul>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+
+
+        </div>
+        <!-- /main -->
+
+    </div>
+  </div>
+  <div id="settings_info"></div>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+  <!-- <script type="text/javascript" src="./js/d3.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script> -->
+  <!-- <script src="./js/d3.v4.js"></script>
+
+  <script type="text/javascript" src="./js/topojson.min.js"></script>
+  <script type="text/javascript" src="./js/datamaps.all.min.js"></script>
+  <script type="text/javascript" src="./js/default_set.js"></script> -->
+  <script src="./js/jspdf.min.js"></script>
+  <script type="text/javascript" src="./js/menus.js"></script>
+  <script src="./js/hordes.themes.js" charset="utf-8"></script>
+  <script type="text/javascript" src="./js/hordes-0.4.js"></script>
+
+
+</html>
